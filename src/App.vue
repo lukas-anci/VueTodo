@@ -43,19 +43,24 @@
       </v-btn>
     </v-app-bar>
 
-    <v-main> <router-view></router-view></v-main>
+    <v-main>
+      <router-view></router-view>
+
+      <Snackbar />
+    </v-main>
   </v-app>
 </template>
 
 <script>
+import Snackbar from "./components/Global/Snackbar.vue";
 export default {
   data: () => ({
     drawer: null,
-
     items: [
       { title: "Todo", icon: "mdi-format-list-checks", to: "/" },
       { title: "About", icon: "mdi-help-box", to: "/about" },
     ],
   }),
+  components: { Snackbar },
 };
 </script>
