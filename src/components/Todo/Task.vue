@@ -16,39 +16,23 @@
           >
         </v-list-item-content>
         <v-list-item-action>
-          <v-btn icon>
-            <v-icon @click.stop="dialogs.delete = true" color="red"
-              >mdi-delete</v-icon
-            >
-          </v-btn>
+          <TaskMenu :task="task" />
         </v-list-item-action>
       </template>
     </v-list-item>
     <v-divider></v-divider>
-    <DialogDelete
-      v-if="dialogs.delete"
-      :task="task"
-      @close="dialogs.delete = false"
-    />
   </div>
 </template>
 
 <script>
-import DialogDelete from "../Dialogs/DialogDelete.vue";
+import TaskMenu from "./TaskMenu.vue";
 export default {
-  data() {
-    return {
-      dialogs: {
-        delete: false,
-      },
-    };
-  },
   props: {
     task: {
       type: Object,
       required: false,
     },
   },
-  components: { DialogDelete },
+  components: { TaskMenu },
 };
 </script>
