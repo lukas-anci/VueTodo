@@ -25,13 +25,19 @@
       :task="task"
       @close="dialogs.delete = false"
     />
+    <DialogEdit
+      v-if="dialogs.edit"
+      :task="task"
+      @close="dialogs.edit = false"
+    />
   </div>
 </template>
 
 <script>
 import DialogDelete from "../Dialogs/DialogDelete.vue";
+import DialogEdit from "../Dialogs/DialogEdit.vue";
 export default {
-  components: { DialogDelete },
+  components: { DialogDelete, DialogEdit },
   data: () => ({
     items: [
       {
@@ -39,6 +45,7 @@ export default {
         icon: "mdi-pencil",
         click() {
           console.log("edit");
+          this.dialogs.edit = true;
         },
       },
       {
@@ -58,6 +65,7 @@ export default {
     ],
     dialogs: {
       delete: false,
+      edit: false,
     },
   }),
   methods: {
