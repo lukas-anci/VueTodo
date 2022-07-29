@@ -3,8 +3,8 @@
     <v-navigation-drawer v-model="drawer" app>
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title class="text-h6"> Vue Todo </v-list-item-title>
-          <v-list-item-subtitle> TODO </v-list-item-subtitle>
+          <v-list-item-title class="title"> Vuetify Todo </v-list-item-title>
+          <v-list-item-subtitle> Best Todo Ever! </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
 
@@ -23,36 +23,36 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar src="../public/mountain.png" app color="primary" dark prominent>
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+    <v-app-bar app color="primary" dark src="mountains.jpg" prominent>
+      <template v-slot:img="{ props }">
+        <v-img
+          v-bind="props"
+          gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
+        ></v-img>
+      </template>
 
-      <v-toolbar-title>Todo</v-toolbar-title>
-
-      <v-spacer></v-spacer>
-
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-heart</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn>
+      <v-container class="pa-0">
+        <v-row>
+          <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+          <v-spacer></v-spacer>
+          <search />
+        </v-row>
+        <v-row>
+          <v-toolbar-title class="ml-4">Vuetify Todo</v-toolbar-title>
+        </v-row>
+      </v-container>
     </v-app-bar>
 
     <v-main>
       <router-view></router-view>
-
-      <Snackbar />
+      <snackbar />
     </v-main>
   </v-app>
 </template>
 
 <script>
 import Snackbar from "./components/Global/Snackbar.vue";
+import Search from "./components/Tools/Search.vue";
 export default {
   data: () => ({
     drawer: null,
@@ -61,6 +61,6 @@ export default {
       { title: "About", icon: "mdi-help-box", to: "/about" },
     ],
   }),
-  components: { Snackbar },
+  components: { Snackbar, Search },
 };
 </script>
