@@ -23,7 +23,14 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar app color="primary" dark src="mountains.jpg" prominent>
+    <v-app-bar
+      app
+      color="primary"
+      dark
+      src="mountains.jpg"
+      prominent
+      height="170"
+    >
       <template v-slot:img="{ props }">
         <v-img
           v-bind="props"
@@ -38,8 +45,9 @@
           <search />
         </v-row>
         <v-row>
-          <v-toolbar-title class="ml-4">Vuetify Todo</v-toolbar-title>
+          <v-toolbar-title class="text-h4 ml-4">Vuetify Todo</v-toolbar-title>
         </v-row>
+        <v-row> <LiveDateTime /> </v-row>
       </v-container>
     </v-app-bar>
 
@@ -51,16 +59,17 @@
 </template>
 
 <script>
-import Snackbar from "./components/Global/Snackbar.vue";
-import Search from "./components/Tools/Search.vue";
+import Snackbar from './components/Global/Snackbar.vue';
+import Search from './components/Tools/Search.vue';
+import LiveDateTime from './components/Tools/LiveDateTime.vue';
 export default {
   data: () => ({
     drawer: null,
     items: [
-      { title: "Todo", icon: "mdi-format-list-checks", to: "/" },
-      { title: "About", icon: "mdi-help-box", to: "/about" },
+      { title: 'Todo', icon: 'mdi-format-list-checks', to: '/' },
+      { title: 'About', icon: 'mdi-help-box', to: '/about' },
     ],
   }),
-  components: { Snackbar, Search },
+  components: { Snackbar, Search, LiveDateTime },
 };
 </script>
