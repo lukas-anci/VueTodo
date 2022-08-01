@@ -49,7 +49,9 @@
           <search />
         </v-row>
         <v-row>
-          <v-toolbar-title class="text-h4 ml-4">Vuetify Todo</v-toolbar-title>
+          <v-toolbar-title class="text-h4 ml-4">{{
+            $store.state.appTitle
+          }}</v-toolbar-title>
         </v-row>
         <v-row> <LiveDateTime /> </v-row>
       </v-container>
@@ -74,6 +76,7 @@ export default {
       { title: 'About', icon: 'mdi-help-box', to: '/about' },
     ],
   }),
+
   components: { Snackbar, Search, LiveDateTime },
 };
 </script>

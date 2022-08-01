@@ -1,113 +1,112 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    search:null,
+    appTitle: process.env.VUE_APP_TITLE,
+    search: null,
     tasks: [
       {
         id: 1,
-        title: "Wake up",
+        title: 'Wake up',
         done: false,
-        dueDate:'2022-10-10'
+        dueDate: '2022-10-10',
       },
       {
         id: 2,
-        title: "Do dishes",
+        title: 'Do dishes',
         done: false,
-        dueDate:'2022-11-10'
+        dueDate: '2022-11-10',
       },
       {
         id: 3,
-        title: "Go for a walk",
+        title: 'Go for a walk',
         done: false,
-        dueDate:'2022-10-15'
+        dueDate: '2022-10-15',
       },
       {
         id: 4,
-        title: "Learn JS",
+        title: 'Learn JS',
         done: false,
-        dueDate:null
+        dueDate: null,
       },
     ],
     snackbar: {
-      show:false,
+      show: false,
       text: '',
     },
   },
   mutations: {
-    setSearch(state,value){
-      state.search=value
-
+    setSearch(state, value) {
+      state.search = value;
     },
-    addTask(state,newTaskTitle) {
+    addTask(state, newTaskTitle) {
       let newTask = {
         id: Date.now(),
         title: newTaskTitle,
         done: false,
-        dueDate: null
+        dueDate: null,
       };
       state.tasks.push(newTask);
     },
-    doneTask(state,id) {
+    doneTask(state, id) {
       let task = state.tasks.filter((task) => task.id === id)[0];
       task.done = !task.done;
     },
-    deleteTask(state,id) {
+    deleteTask(state, id) {
       state.tasks = state.tasks.filter((task) => task.id !== id);
     },
-    updateTaskTitle(state,payload){
+    updateTaskTitle(state, payload) {
       let task = state.tasks.filter((task) => task.id === payload.id)[0];
-      task.title = payload.title
+      task.title = payload.title;
     },
-    updateTaskDueDate(state,payload){
+    updateTaskDueDate(state, payload) {
       let task = state.tasks.filter((task) => task.id === payload.id)[0];
-      task.dueDate = payload.dueDate
+      task.dueDate = payload.dueDate;
     },
-    showSnackbar(state, text){
-      let timeout = 0
-      if(state.snackbar.show = true){
-        state.snackbar.show = false
-        timeout = 300
+    showSnackbar(state, text) {
+      let timeout = 0;
+      if ((state.snackbar.show = true)) {
+        state.snackbar.show = false;
+        timeout = 300;
       }
-      setTimeout(()=>{
-        state.snackbar.show = true
-        state.snackbar.text = text
-
-      }, timeout)
+      setTimeout(() => {
+        state.snackbar.show = true;
+        state.snackbar.text = text;
+      }, timeout);
     },
-    hideSnackbar(state){
-      state.snackbar.show = false
-    }
+    hideSnackbar(state) {
+      state.snackbar.show = false;
+    },
   },
   actions: {
-    addTask({commit},newTaskTitle) {
-     commit('addTask', newTaskTitle)
-     commit('showSnackbar', 'Task added')
+    addTask({ commit }, newTaskTitle) {
+      commit('addTask', newTaskTitle);
+      commit('showSnackbar', 'Task added');
     },
-    deleteTask({commit}, id){
-      commit('deleteTask', id)
-      commit('showSnackbar', 'Task deleted')
+    deleteTask({ commit }, id) {
+      commit('deleteTask', id);
+      commit('showSnackbar', 'Task deleted');
     },
-    updateTaskTitle({commit},payload){
-      commit('updateTaskTitle',payload)
-      commit('showSnackbar', 'Task Updated')
+    updateTaskTitle({ commit }, payload) {
+      commit('updateTaskTitle', payload);
+      commit('showSnackbar', 'Task Updated');
     },
-    updateTaskDueDate({commit},payload){
-      commit('updateTaskDueDate',payload)
-      commit('showSnackbar', 'Date changed!')
+    updateTaskDueDate({ commit }, payload) {
+      commit('updateTaskDueDate', payload);
+      commit('showSnackbar', 'Date changed!');
     },
-    
   },
-  getters:{
-    tasksFiltered(state){
-      if(!state.search){
-        return state.tasks
+  getters: {
+    tasksFiltered(state) {
+      if (!state.search) {
+        return state.tasks;
       }
-      return state.tasks.filter((task)=> task.title.toLowerCase().includes(state.search.toLowerCase()))
-    }
+      return state.tasks.filter((task) =>
+        task.title.toLowerCase().includes(state.search.toLowerCase())
+      );
+    },
   },
- 
-})
+});
