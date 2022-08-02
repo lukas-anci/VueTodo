@@ -39,33 +39,40 @@
 </template>
 
 <script>
-import DialogDelete from "../Dialogs/DialogDelete.vue";
-import DialogEdit from "../Dialogs/DialogEdit.vue";
-import DialogDueDate from "../Dialogs/DialogDueDate.vue";
+import DialogDelete from '../Dialogs/DialogDelete.vue';
+import DialogEdit from '../Dialogs/DialogEdit.vue';
+import DialogDueDate from '../Dialogs/DialogDueDate.vue';
 export default {
   components: { DialogDelete, DialogEdit, DialogDueDate },
   data: () => ({
     items: [
       {
-        title: "Edit",
-        icon: "mdi-pencil",
+        title: 'Edit',
+        icon: 'mdi-pencil',
         click() {
-          console.log("edit");
+          console.log('edit');
           this.dialogs.edit = true;
         },
       },
       {
-        title: "Due Date",
-        icon: "mdi-calendar",
+        title: 'Due Date',
+        icon: 'mdi-calendar',
         click() {
           this.dialogs.dueDate = true;
         },
       },
       {
-        title: "Delete",
-        icon: "mdi-delete",
+        title: 'Delete',
+        icon: 'mdi-delete',
         click() {
           this.dialogs.delete = true;
+        },
+      },
+      {
+        title: 'Sort',
+        icon: 'mdi-drag-horizontal-variant',
+        click() {
+          this.$store.commit('toggleSorting');
         },
       },
     ],

@@ -82,5 +82,5 @@ export default {
 </script>
 <style lang="sass">
 .header-container
-   max-width:none
+   max-width: none
 </style>

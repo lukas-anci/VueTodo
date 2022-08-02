@@ -3,6 +3,8 @@
     <v-list-item
       @click="$store.commit('doneTask', task.id)"
       :class="{ green: task.done }"
+      class="white"
+      :riple="false"
     >
       <template v-slot:default>
         <v-list-item-action>
@@ -26,6 +28,11 @@
         <v-list-item-action>
           <TaskMenu :task="task" />
         </v-list-item-action>
+        <v-list-item-action v-if="$store.state.sorting">
+          <v-btn class="handle" icon>
+            <v-icon>mdi-drag-horizontal-variant</v-icon>
+          </v-btn>
+        </v-list-item-action>
       </template>
     </v-list-item>
     <v-divider></v-divider>
@@ -33,8 +40,8 @@
 </template>
 
 <script>
-import TaskMenu from "./TaskMenu.vue";
-import { format } from "date-fns";
+import TaskMenu from './TaskMenu.vue';
+import { format } from 'date-fns';
 export default {
   props: {
     task: {
@@ -44,9 +51,18 @@ export default {
   },
   filters: {
     niceDate(value) {
-      return format(new Date(value), "MMM d");
+      return format(new Date(value), 'MMM d');
     },
   },
   components: { TaskMenu },
 };
 </script>
+<style>
+.sortable-ghost {
+  opacity: 0;
+}
+
+.sortable-drag {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+</style>
