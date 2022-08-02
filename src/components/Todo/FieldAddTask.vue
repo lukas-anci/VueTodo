@@ -1,9 +1,9 @@
 <template>
   <v-text-field
     v-model="newTaskTitle"
-    class="pa-3"
+    class="field-add-task pa-3"
     outlined
-    label="Add Task"
+    placeholder="Add Task"
     hide-details
     clearable
     @keyup.enter="addTask"
@@ -20,7 +20,7 @@
 export default {
   data() {
     return {
-      newTaskTitle: "",
+      newTaskTitle: '',
     };
   },
   computed: {
@@ -31,8 +31,8 @@ export default {
   methods: {
     addTask() {
       if (!this.newTaskTitleInvalid) {
-        this.$store.dispatch("addTask", this.newTaskTitle);
-        this.newTaskTitle = "";
+        this.$store.dispatch('addTask', this.newTaskTitle);
+        this.newTaskTitle = '';
       }
     },
   },

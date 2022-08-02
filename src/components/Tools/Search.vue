@@ -11,6 +11,7 @@
     prepend-inner-icon="mdi-magnify"
     placeholder="Search"
     filled
+    :disabled="$store.state.sorting"
   ></v-text-field>
 </template>
 

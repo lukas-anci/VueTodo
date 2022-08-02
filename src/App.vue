@@ -5,7 +5,7 @@
         class="pa-4 pt-7"
         src="../src/assets/mountains.jpeg"
         height="170"
-        gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
+        gradient="to top right, rgba(19,84,122,.9), rgba(128,208,199,.9)"
       >
         <v-avatar size="70" class="mb-2">
           <img src="../src/assets/avatar.jpg" alt="Lukas" />
@@ -33,7 +33,7 @@
       dark
       src="mountains.jpg"
       prominent
-      height="170"
+      :height="$route.path === '/' ? '238' : '170'"
     >
       <template v-slot:img="{ props }">
         <v-img
@@ -54,6 +54,7 @@
           }}</v-toolbar-title>
         </v-row>
         <v-row> <LiveDateTime /> </v-row>
+        <v-row v-if="$route.path === '/'"> <FieldAddTask /> </v-row>
       </v-container>
     </v-app-bar>
 
@@ -68,6 +69,7 @@
 import Snackbar from './components/Global/Snackbar.vue';
 import Search from './components/Tools/Search.vue';
 import LiveDateTime from './components/Tools/LiveDateTime.vue';
+import FieldAddTask from './components/Todo/FieldAddTask.vue';
 export default {
   data: () => ({
     drawer: null,
@@ -79,7 +81,7 @@ export default {
   mounted() {
     this.$store.dispatch('getTasks');
   },
-  components: { Snackbar, Search, LiveDateTime },
+  components: { Snackbar, Search, LiveDateTime, FieldAddTask },
 };
 </script>
 <style lang="sass">
